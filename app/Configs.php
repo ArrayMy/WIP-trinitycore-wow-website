@@ -29,6 +29,7 @@ require_once('Log.php');
             $log = new log($this->Error_Msg);
             $log->in_to_log();
             $this->Bool = False;
+            die();
           }
        }
    }
