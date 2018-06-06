@@ -8,14 +8,14 @@
        }
        
        public function Check_Config_Exist(){
-           if(file_exist('config.ini')){
+           if(file_exist('../../configs/config.ini')){
               $this->Check_Config_Data();   
            }else{
                  $this->Error_Msg = "Warning: File config.ini is not exist! Please rename default_config.ini on config.ini!";
-              if(file_exist('default_config.ini')){
+              if(file_exist('../../configs/default_config.ini')){
                  $this->Check_Config_Data(); 
               }else{
-                 $this->Error_Msg = "Error: File config.ini and default_config.ini are not exist!" 
+                 $this->Error_Msg = "Error: File config.ini and default_config.ini are not exist!";
               }
            }
        }
