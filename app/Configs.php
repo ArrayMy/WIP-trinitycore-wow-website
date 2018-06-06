@@ -2,6 +2,8 @@
 require_once('Log.php');
    class Configs{
    
+      public static $config;
+      
        public function __construct(){
            $this->Check_Config_Exist();
            
@@ -30,6 +32,18 @@ require_once('Log.php');
             $log->in_to_log();
             $this->Bool = False;
             die();
+          }else{
+            $this->Bool = True;
+          }
+       }
+          
+       public function Load_Data(){
+          $this->Check_Config_Exist;
+          if($this->Bool==True){
+             self::config = parse_ini_file("_DIR_ . \"/../../configs/config.ini",true);
+          }else if($this->Bool==False){
+             die();
+          }else{
           }
        }
    }
