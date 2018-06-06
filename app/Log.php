@@ -13,6 +13,7 @@
                 fclose();
              }else{
                 $this->open_file();
+                fwrite($this->file,$this->ErrorMsg);
                 fclose();
              }
         }
