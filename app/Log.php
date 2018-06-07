@@ -17,6 +17,19 @@
                 fclose();
              }
         }
+        
+        public function check_error(){
+         if($this->ErrorMsg[1]=="E"){
+             $this->in_to_log();
+             $this->Bool=false;
+             die();
+         }else if($this->ErrorMsg[1]=="W"){
+         $this->in_to_log();
+         $this->Bool=true;
+         }else{
+         $this->Bool=true;   
+         }
+        }
     
         public function open_file(){
              $this->file = fopen('../../logs/log.txt','w');
