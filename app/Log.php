@@ -24,10 +24,10 @@
              $this->Bool=false;
              die();
          }else if($this->ErrorMsg[1]=="W"){
-         $this->in_to_log();
-         $this->Bool=true;
+             $this->in_to_log();
+             $this->Bool=true;
          }else{
-         $this->Bool=true;   
+             $this->Bool=true;   
          }
         }
     
