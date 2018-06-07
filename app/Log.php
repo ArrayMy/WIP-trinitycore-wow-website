@@ -9,11 +9,11 @@
         public function in_to_log(){
              if(file_exist("_DIR_ . \"/../../logs/log.txt")){
                 $this->open_file();
-                fwrite($this->file,$this->ErrorMsg);
+                fwrite($this->file,$this->ErrorMsg."\n");
                 fclose();
              }else{
                 $this->open_file();
-                fwrite($this->file,$this->ErrorMsg);
+                fwrite($this->file,$this->ErrorMsg."\n");
                 fclose();
              }
         }
