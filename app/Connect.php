@@ -1,5 +1,6 @@
 <?php
 require_once('Configs.php');
+require_once('Log.php');
    class connect{
      
      public static $connect;
@@ -7,7 +8,13 @@ require_once('Configs.php');
       public function connect(){
        $Config = new Configs();
        $Config->Load_Data();
-       self::connect = mysqli_connect($Config->self::config[Connect][Database_Host],$Config->self::config[Connect][Database_User],$Config->self::config[Connect][Database_User_Password]);
+       self::connect = new mysqli($Config->self::config[Connect][Database_Host],$Config->self::config[Connect][Database_User],$Config->self::config[Connect][Database_User_Password]);
+       if(mysqli->connect_errno){
+          $error = "Error: There was no connection to the database!"
+          $check_error = new log($error);
+          $check_error->check_error();
+       }else{
+       }
       }
      
    }
