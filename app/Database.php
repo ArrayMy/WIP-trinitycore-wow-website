@@ -1,7 +1,8 @@
 <?php
 require_once('Log.php');
 require_once('Connect.php');
-require_once('Configs');
+require_once('Configs.php');
+require_once('Redirect.php');
 
   class database{
     
@@ -57,6 +58,7 @@ require_once('Configs');
       }
     
       if(isset($user_array){
+        $this->redirect = new redirect();
         $this->decrypt_sha_pass_hash($user_array); 
         if($this->connect::$connect->query("SELECT * FROM account WHERE username=$user_array['username']") === true){
           $this->user_db_array = $this->connect::$connect->query("SELECT * FROM account WHERE username=$user_array['username']");
@@ -82,7 +84,7 @@ require_once('Configs');
     session_start();
     $_SESSION['username'] = $this->user_db_array['username'];
     $this->generate_session_token();
-    $redirect->redirect_succesfull_login();
+    $this->redirect->redirect_succesfull_login();
    }
    
    public function generate_session_token(){
@@ -92,7 +94,7 @@ require_once('Configs');
    }
          
    public function login_unsuccesfull(){
-    $redirect->redirect_unsuccesfull_login();
+     $this->redirect->redirect_unsuccesfull_login($error);
    }
      
   }
