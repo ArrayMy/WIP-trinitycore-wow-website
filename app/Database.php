@@ -34,10 +34,28 @@ require_once('Configs');
            $this->Bool = false;
         }else{
          if($config::$config[Custom Tables]){
+           /*not complete*/
          }
           $this->Bool = true;
         }
       }
+     public function decrypt_sha_pass_hash($user_array){
+       $this->SHA_PASS_HASH = sha1(strtoupper($user_array['username']).':'.strtoupper($user_array['password']));
+     }
+     public function login_use_hash(){
+      if(isset($_POST['username'])){
+       $user_array = $_POST['username'];
+       if(isset($_POST['password'])){
+         $user_array = $_POST['password'];
+       }else{
+       $this->login_error = "";
+       }
+      }else{
+       $this->login_error = "";
+      }
+    
+      $this->decrypt_sha_pass_hash($user_array);
+     }
   }
 
 
