@@ -77,7 +77,23 @@ require_once('Configs');
         }
        }
      }
+    
+   public function login_succesfull(){
+    session_start();
+    $_SESSION['username'] = $this->user_db_array['username'];
+    $this->generate_session_token();
+    $redirect->redirect_succesfull_login();
+   }
+   
+   public function generate_session_token(){
+    $rand = $this->user_db_array['username'];
+    $rand += rand(15, 25); 
+    $_SESSION['session_token'] = $rand;
+   }
          
+   public function login_unsuccesfull(){
+    $redirect->redirect_unsuccesfull_login();
+   }
      
   }
 
