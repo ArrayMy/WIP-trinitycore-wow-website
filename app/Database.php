@@ -10,7 +10,7 @@ require_once('Configs');
         $this->connect->connect(); 
       }
       
-      public function load_data_from_config(){
+      public function load_and_check(){
         $this->connect();
         $config = new Configs();
         $config->Load_Data();
@@ -19,19 +19,24 @@ require_once('Configs');
            $ErrorMsg = "Database ".$config::$config[Databases][Database_World]." is not exist! Check config.ini!";
            $this->check_error = new log($ErrorMsg);
            $this->check_error->check_error();
+           $this->Bool = false;
           
         }else if($this->connect::$connect->select_db("$config::$config[Databases][Database_Auth]" === false){
            $ErrorMsg = "Database ".$config::$config[Databases][Database_Auth]." is not exist! Check config.ini!";
            $this->check_error = new log($ErrorMsg);
            $this->check_error->check_error();
+           $this->Bool = false;
           
         }else if($this->connect::$connect->select_db("$config::$config[Databases][Database_Characters]" === false){
           $ErrorMsg = "Database ".$config::$config[Databases][Database_Characters]." is not exist! Check config.ini!";
            $this->check_error = new log($ErrorMsg);
            $this->check_error->check_error();
-        }else{ 
+           $this->Bool = false;
+        }else{
+         if($config::$config[Custom Tables]){
+         }
+          $this->Bool = true;
         }
-      
       }
   }
 
