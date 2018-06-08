@@ -48,14 +48,37 @@ require_once('Configs');
        if(isset($_POST['password'])){
          $user_array = $_POST['password'];
        }else{
-       $this->login_error = "";
+        $this->login_error = "Fill all fields!";
+        $this->login_unsuccesfull();
        }
       }else{
-       $this->login_error = "";
+       $this->login_error = "Fill all fields!";
+       $this->login_unsuccesfull();
       }
     
-      $this->decrypt_sha_pass_hash($user_array);
+      if(isset($user_array){
+        $this->decrypt_sha_pass_hash($user_array); 
+        if($this->connect::$connect->query("SELECT * FROM account WHERE username=$user_array['username']") === true){
+          $this->user_db_array = $this->connect::$connect->query("SELECT * FROM account WHERE username=$user_array['username']");
+          if($user_array['username'] == $this->user_db_array['username']){
+           if($this->SHA_PASS_HASH == $this->user_db_array['sha_pass_hash']){
+             $this->login_succesfull();
+           }else{
+             $this->login_error = "Wrong username or password!";
+             $this->login_unsuccesfull();
+           }
+          }else{
+            $this->login_error = "Wrong username or password!";
+            $this->login_unsuccesfull();
+          }
+        }else{
+          $this->login_error = "Wrong username or password!";
+          $this->login_unsuccesfull();
+        }
+       }
      }
+         
+     
   }
 
 
