@@ -11,35 +11,57 @@ require_once('Redirect.php');
         $this->connect->connect(); 
       }
       
-      public function load_and_check(){
+    
+      public function select_database_world(){
         $this->connect();
         $config = new Configs();
         $config->Load_Data();
-        
         if($this->connect::$connect->select_db("$config::$config[Databases][Database_World]") === false){
            $ErrorMsg = "Database ".$config::$config[Databases][Database_World]." is not exist! Check config.ini!";
            $this->check_error = new log($ErrorMsg);
            $this->check_error->check_error();
            $this->Bool = false;
-          
-        }else if($this->connect::$connect->select_db("$config::$config[Databases][Database_Auth]" === false){
+        }else{
+          $this->Bool = true;
+        }
+      }
+    
+      public function select_database_auth(){
+        $this->connect();
+        $config = new Configs();
+        $config->Load_Data();
+        if($this->connect::$connect->select_db("$config::$config[Databases][Database_Auth]" === false){
            $ErrorMsg = "Database ".$config::$config[Databases][Database_Auth]." is not exist! Check config.ini!";
            $this->check_error = new log($ErrorMsg);
            $this->check_error->check_error();
            $this->Bool = false;
-          
-        }else if($this->connect::$connect->select_db("$config::$config[Databases][Database_Characters]" === false){
+         }else{
+          $this->Bool = true;
+        }
+      }
+    
+      public function select_database_characters(){
+        $this->connect();
+        $config = new Configs();
+        $config->Load_Data();
+         if($this->connect::$connect->select_db("$config::$config[Databases][Database_Characters]" === false){
           $ErrorMsg = "Database ".$config::$config[Databases][Database_Characters]." is not exist! Check config.ini!";
            $this->check_error = new log($ErrorMsg);
            $this->check_error->check_error();
            $this->Bool = false;
-        }else{
-         if($config::$config[Custom Tables]){
-           /*not complete*/
-         }
+         }else{
           $this->Bool = true;
         }
       }
+    
+            
+      public function load_and_check(){
+        $this->select_database_world();
+        $this->select_database_auth();
+        $this->select_database_characters();
+      }
+            
+            
      public function decrypt_sha_pass_hash($user_array){
        $this->SHA_PASS_HASH = sha1(strtoupper($user_array['username']).':'.strtoupper($user_array['password']));
      }
