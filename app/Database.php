@@ -118,10 +118,26 @@ require_once('Redirect.php');
    public function login_unsuccesfull(){
      $this->redirect->redirect_unsuccesfull_login($error);
    }
-   
+   public function Show_num_of_chars(){
+     echo $this->characters_num;
+   }
    public function Show_Characters(){
+    $this->characters_num = 0;
     $this->select_database_characters();
     $this->characters_db_array = $this->connect::$connect->query("SELECT * FROM characters WHERE account=$this->user_db_array['id']");
+    if(isset($this->characters_db_array[$this->characters_num]['id'])){
+      echo $this->characters_db_array[$this->characters_num]['name'];
+      echo $this->characters_db_array[$this->characters_num]['class'];
+      echo $this->characters_db_array[$this->characters_num]['level'];
+      if($this->characters_db_array[$this->characters_num]['online']=="1"){
+      echo "Online";
+      }else{
+      echo "Offline";
+      }
+      echo $this->characters_db_array[$this->characters_num]['totalKills'];
+      $this->characters_num++;
+    }else{
+    }
    /*Multi array, more characters*/
    }
   }
