@@ -118,7 +118,12 @@ require_once('Redirect.php');
    public function login_unsuccesfull(){
      $this->redirect->redirect_unsuccesfull_login($error);
    }
-     
+   
+   public function Show_Characters(){
+    $this->select_database_characters();
+    $this->characters_db_array = $this->connect::$connect->query("SELECT * FROM characters WHERE account=$this->user_db_array['id']");
+   /*Multi array, more characters*/
+   }
   }
 
 
