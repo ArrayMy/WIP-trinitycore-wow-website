@@ -159,6 +159,13 @@ require_once('Redirect.php');
    echo $copper;
    }
  }
-
+ 
+ public function Unstuck()
+         
+ }
+         
+ public function Register(){
+ 
+ }
 
 ?>
