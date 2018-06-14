@@ -143,16 +143,20 @@ require_once('Redirect.php');
   }
          
  public function Show_Money(){
-   if($this->characters_db_array[$this->characters_num]['money']=>1000){
-     $silver = $this->characters_db_array[$this->characters_num]['money'] / 1000;
-     $copper = $this->characters_db_array[$this->characters_num]['money'] % 1000;
-     $gold = $silver / 1000;
-     $silver = $silver % 1000;
+   if($this->characters_db_array[$this->characters_num]['money']=>100){
+     $silver = $this->characters_db_array[$this->characters_num]['money'] / 100;
+     $copper = $this->characters_db_array[$this->characters_num]['money'] % 100;
+     $gold = $silver / 100;
+     $silver = $silver % 100;
+     echo $copper;
      if($silver=>1){
      echo $silver; 
     }else if($gold=>1){
      echo $gold;
      }
+   }else{
+   $copper = $this->characters_db_array[$this->characters_num]['money'];
+   echo $copper;
    }
  }
 
