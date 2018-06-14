@@ -141,6 +141,20 @@ require_once('Redirect.php');
    /*Multi array, more characters*/
    }
   }
+         
+ public function Show_Money(){
+   if($this->characters_db_array[$this->characters_num]['money']=>1000){
+     $silver = $this->characters_db_array[$this->characters_num]['money'] / 1000;
+     $copper = $this->characters_db_array[$this->characters_num]['money'] % 1000;
+     $gold = $silver / 1000;
+     $silver = $silver % 1000;
+     if($silver=>1){
+     echo $silver; 
+    }else if($gold=>1){
+     echo $gold;
+     }
+   }
+ }
 
 
 ?>
