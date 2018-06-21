@@ -166,9 +166,10 @@ require_once('Redirect.php');
 
 #Unstuck character function
  public function Unstuck()
+   $this->select_database_auth();
+   $account_id = $this->connect::$connect->query("SELECT id FROM account WHERE username='$_SESSION['username']");
    $this->select_database_characters();
-   
-   
+   $this->connect::$connect->query("UPDATE characters SET position_x=$config::$config[Game][Unstuck_location_x]  position_y=$config::$config[Game][Unstuck_location_y]  position_z=$config::$config[Game][Unstuck_location_z  map=$config::$config[Game][Unstuck_location_map] WHERE account=$account_id");
  }
          
 #Register         
@@ -191,7 +192,7 @@ require_once('Redirect.php');
       }else{
         #Sucessfull
         $encrypt_password = sha1(strtoupper($username).':'.strtoupper($password));
-        $this->connect::$connect->query("INSERT INTO account ('username','sha_pass_hash','email') VALUE ('$username','$encrypt_password','$email')");
+        $this->connect::$connect->query("INSERT INTO account ('username','sha_pass_hash','email') VALUES ('$username','$encrypt_password','$email')");
       }
      }
     }
