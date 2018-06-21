@@ -11,7 +11,7 @@ require_once('Redirect.php');
         $this->connect->connect(); 
       }
       
-    
+    #switch databases
       public function select_database_world(){
         $this->connect();
         $config = new Configs();
@@ -61,7 +61,7 @@ require_once('Redirect.php');
         $this->select_database_characters();
       }
             
-            
+    #Login        
      public function decrypt_sha_pass_hash($user_array){
        $this->SHA_PASS_HASH = sha1(strtoupper($user_array['username']).':'.strtoupper($user_array['password']));
      }
@@ -118,9 +118,12 @@ require_once('Redirect.php');
    public function login_unsuccesfull(){
      $this->redirect->redirect_unsuccesfull_login($error);
    }
+         
+  #Show number of characters
    public function Show_num_of_chars(){
      echo $this->characters_num;
    }
+  #Show characters
    public function Show_Characters(){
     $this->characters_num = 0;
     $this->select_database_characters();
@@ -142,6 +145,7 @@ require_once('Redirect.php');
    }
   }
          
+#Show money on charater         
  public function Show_Money(){
    if($this->characters_db_array[$this->characters_num]['money']=>100){
      $silver = $this->characters_db_array[$this->characters_num]['money'] / 100;
@@ -159,12 +163,15 @@ require_once('Redirect.php');
    echo $copper;
    }
  }
- 
+
+#Unstuck character function
  public function Unstuck()
+   $this->select_database_characters();
    
    
  }
          
+#Register         
  public function Register(){
     $this->select_database_auth();
     $username = $_POST['username'];
