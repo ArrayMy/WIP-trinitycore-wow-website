@@ -169,8 +169,11 @@ require_once('Redirect.php');
    $this->select_database_auth();
    $account_id = $this->connect::$connect->query("SELECT id FROM account WHERE username='$_SESSION['username']");
    $this->select_database_characters();
+   #online == 0
+   if(){
    $this->connect::$connect->query("UPDATE characters SET position_x=$config::$config[Game][Unstuck_location_x]  position_y=$config::$config[Game][Unstuck_location_y]  position_z=$config::$config[Game][Unstuck_location_z  map=$config::$config[Game][Unstuck_location_map] WHERE account=$account_id");
  }
+}
          
 #Register         
  public function Register(){
