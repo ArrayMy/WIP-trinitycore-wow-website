@@ -161,11 +161,33 @@ require_once('Redirect.php');
  }
  
  public function Unstuck()
-          
+   
+   
  }
          
  public function Register(){
- 
- }
+    $this->select_database_auth();
+    $username = $_POST['username'];
+    $USERNAME_CHECK = $this->connect::$connect->query("SELECT * FROM account WHERE username = $username");
+    if($USERNAME_CHECK['username'] == $username){
+      #Username already exist!
+    }else{
+      $email = $_POST['email'];
+      $EMAIL_CHECK = $this->connect::$connect->query("SELECT * FROM account WHERE email = $email");
+     if($EMAIL_CHECK['email'] == $email){
+       #Email already exist!
+     }else{
+       $password = $_POST['password'];
+       $password_confirm = $_POST['password_confirm'];
+      if($password!=$password_confirm){
+        #Password ...
+      }else{
+        #Sucessfull
+        $encrypt_password = sha1(strtoupper($username).':'.strtoupper($password));
+        $this->connect::$connect->query("INSERT INTO account ('username','sha_pass_hash','email') VALUE ('$username','$encrypt_password','$email')");
+      }
+     }
+    }
+   }
 
 ?>
