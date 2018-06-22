@@ -199,6 +199,30 @@ require_once('Redirect.php');
       }
      }
     }
+   
+   public function Show_Character_Stats(){
+     
    }
+   
+   public function Free_Daily_Points($Time,$Points,$Account){
+     
+   }
+
+   public function Reserve_Character_Name_For_Points($Name,$Price,$Account){
+     
+   }
+   
+   public function Online_Auction_For_Points($LockStatus,$Account,$Price){
+     
+   }
+   
+   public function Guild_View_For_Free(){
+     
+   }
+   
+   public function Guild_View_And_Edit_For_Points(){
+     
+   }
+  }
 
 ?>
