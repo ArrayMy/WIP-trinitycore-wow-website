@@ -12,7 +12,7 @@ require_once('Log.php');
            if(file_exist("_DIR_ . \"/../../configs/config.ini")){
            }else{  
                  $this->Error_Msg = "Warning: File config.ini is not exist! Please rename default_config.ini on config.ini!";
-              if(file_exist("_DIR_ . \"/../../configs/config.ini")){
+              if(file_exist("_DIR_ . \"/../../configs/default_config.ini")){
                  $this->Check_Config_Data(); 
               }else{
                  $this->Error_Msg = "Error: File config.ini and default_config.ini are not exist!";
