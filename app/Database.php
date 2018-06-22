@@ -203,9 +203,8 @@ require_once('Redirect.php');
    public function Show_Character_Stats(){
       $this->select_database_characters();
       $GUID_CHARACTER = this->connect::$connect->query("SELECT guid,class FROM characters WHERE name=$_GET['name']");                                          
-      $Character_Stats = this->connect::$connect->query("SELECT * FROM character_stats WHERE guid=$GUID_CHARACTER['guid']);
-      if($GUID_CHARACTER['class'] == ){
-      }
+      $this->Character_Stats = this->connect::$connect->query("SELECT * FROM character_stats WHERE guid=$GUID_CHARACTER['guid']);
+      /* on website showing stats $this->Character_Stats['stamina'] atd...*/
    }
    
    public function Free_Daily_Points($Time,$Points,$Account){
