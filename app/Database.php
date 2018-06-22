@@ -205,6 +205,8 @@ require_once('Redirect.php');
       $GUID_CHARACTER = this->connect::$connect->query("SELECT guid,class FROM characters WHERE name=$_GET['name']");                                          
       $this->Character_Stats = this->connect::$connect->query("SELECT * FROM character_stats WHERE guid=$GUID_CHARACTER['guid']);
       /* on website showing stats $this->Character_Stats['stamina'] atd...*/
+      /*All stats on https://trinitycore.atlassian.net/wiki/spaces/tc/pages/2129971/character_stats*/
+      /*worldserver.conf: PlayerSave.Stats*/
    }
    
    public function Free_Daily_Points($Time,$Points,$Account){
