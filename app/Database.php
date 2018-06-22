@@ -53,8 +53,7 @@ require_once('Redirect.php');
           $this->Bool = true;
         }
       }
-    
-            
+    #check all databases    
       public function load_and_check(){
         $this->select_database_world();
         $this->select_database_auth();
@@ -209,8 +208,13 @@ require_once('Redirect.php');
       /*worldserver.conf: PlayerSave.Stats*/
    }
    
-   public function Free_Daily_Points($Time,$Points,$Account){
-     
+   public function Free_Daily_Points(){
+       $config = new Configs();
+       $config->Load_Data();
+       $this->select_database_characters();
+       $Last_Login = this->connect::$connect->query("SELECT last_login FROM account WHERE username=$_SESSION['username']");
+       /*TIME AND AMOUT POINTS*/
+       $config::$config[Web][Time_For_Points];
    }
 
    public function Reserve_Character_Name_For_Points($Name,$Price,$Account){
