@@ -214,6 +214,7 @@ require_once('Redirect.php');
        $this->select_database_characters();
        $Last_Login = this->connect::$connect->query("SELECT last_login FROM account WHERE username=$_SESSION['username']");
        /*TIME AND AMOUT POINTS*/
+       date('Y-m-d');
        $config::$config[Web][Time_For_Points];
    }
 
